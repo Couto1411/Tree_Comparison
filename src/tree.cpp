@@ -103,7 +103,6 @@ void removeTree(Tree **t, Record r){
 	Tree *aux;
   	
   	if (*t == nullptr){ 
-  		printf("[ERROR]: Record not found!!!\n");
     	return;
   	}
 
@@ -122,4 +121,28 @@ void removeTree(Tree **t, Record r){
   	aux = *t;  
   	*t = (*t)->FD;
   	delete aux;
+}
+
+
+long long insercaoTree(Tree **Raiz,vector<double> numeros,int x){
+	Record r;
+	auto start = chrono::high_resolution_clock::now();
+	for(int i=0; i<x; i++){
+		r.key = numeros[i];
+		insertTree(Raiz,r);
+	}
+	auto stop = chrono::high_resolution_clock::now();
+	auto duration = chrono::duration_cast<chrono::microseconds>(stop - start);
+	return duration.count();
+}
+long long remocaoTree(Tree **Raiz,vector<double> busca){
+	Record r;
+	auto start = chrono::high_resolution_clock::now();
+	for (long unsigned int i = 0; i < busca.size(); i++){
+		r.key=busca[i];			
+		removeTree(Raiz,r);
+	}
+	auto stop = chrono::high_resolution_clock::now();
+	auto duration = chrono::duration_cast<chrono::microseconds>(stop - start);
+	return duration.count();
 }

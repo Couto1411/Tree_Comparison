@@ -83,7 +83,6 @@ void removeAvl(Avl **t, Avl **f, Record r){
 	Avl *aux;
   	
   	if (*t == nullptr){ 
-  		printf("[ERROR]: Record not found!!!\n");
     	return;
   	}
 
@@ -93,9 +92,10 @@ void removeAvl(Avl **t, Avl **f, Record r){
   	if ((*t)->FD == nullptr){ 
   		aux = *t;  
   		*t = (*t)->FE;
-    	delete aux;
-    	rebalanceAvl(f);
-    	return;
+		if((*f)!=nullptr)
+			rebalanceAvl(f);
+		delete aux;
+		return;
   	}
 
   	if ((*t)->FE != nullptr){ 
@@ -212,15 +212,26 @@ void rotacaoDuplaEsquerda(Avl **t){
 	rotacaoSimplesEsquerda(t);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
+long long insercaoAvl(Avl **Raiz,vector<double> numeros,int x){
+	Record r;
+	r.value = 1;
+	auto start = chrono::high_resolution_clock::now();
+	for(int i=0; i<x; i++){
+		r.key = numeros[i];
+		insertAvl(Raiz,r);
+	}
+	auto stop = chrono::high_resolution_clock::now();
+	auto duration = chrono::duration_cast<chrono::microseconds>(stop - start);
+	return duration.count();
+}
+long long remocaoAvl(Avl **Raiz,vector<double> busca){
+	Record r;
+	auto start = chrono::high_resolution_clock::now();
+	for (long unsigned int i = 0; i < busca.size(); i++){
+		r.key=busca[i];			
+		removeAvl(Raiz,Raiz,r);
+	}
+	auto stop = chrono::high_resolution_clock::now();
+	auto duration = chrono::duration_cast<chrono::microseconds>(stop - start);
+	return duration.count();
+}

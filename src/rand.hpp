@@ -2,9 +2,10 @@
 #define File
 
 #include "base.hpp"
-#include <ctime>
-#include <fstream>
+#include <algorithm>
+#include <random>
 
 void randomize();
 void arquivos();
+void shuffleSearch();
 #endif

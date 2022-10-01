@@ -70,7 +70,7 @@ void insertFixUp(RedBlack **raiz, RedBlack *child)
   (*raiz)->cor = true;
 }
 
-void insertRedBlack(RedBlack **t, RedBlack **pai, RedBlack **raiz, Record r)
+void insertRB(RedBlack **t, RedBlack **pai, RedBlack **raiz, Record r)
 {
 
   if (*t == nullptr)
@@ -88,13 +88,13 @@ void insertRedBlack(RedBlack **t, RedBlack **pai, RedBlack **raiz, Record r)
 
     if (r.key < (*t)->item.key)
     {
-      insertRedBlack(&(*t)->FE, t, raiz, r);
+      insertRB(&(*t)->FE, t, raiz, r);
       return;
     }
 
     if (r.key > (*t)->item.key)
     {
-      insertRedBlack(&(*t)->FD, t, raiz, r);
+      insertRB(&(*t)->FD, t, raiz, r);
       return;
     }
   }
@@ -300,7 +300,6 @@ void RBTransplant(RedBlack **T, RedBlack *valor, RedBlack *sucessor){
 
 void removeRB(RedBlack **raiz,RedBlack **t, Record r){
   if (*t == nullptr){ 
-    printf("[ERROR]: Record not found!!!\n");
     return;
   }
 
@@ -388,4 +387,27 @@ void RBDeleteFixup(RedBlack **T, RedBlack *x){
     }
   }
   x->cor=true;  
+}
+
+long long insercaoRB(RedBlack **Raiz,vector<double> numeros,int x){
+	Record r;
+	auto start = chrono::high_resolution_clock::now();
+	for(int i=0; i<x; i++){
+		r.key = numeros[i];
+		insertRB(Raiz,Raiz,Raiz,r);
+	}
+	auto stop = chrono::high_resolution_clock::now();
+	auto duration = chrono::duration_cast<chrono::microseconds>(stop - start);
+	return duration.count();
+}
+long long remocaoRB(RedBlack **Raiz,vector<double> busca){
+	Record r;
+	auto start = chrono::high_resolution_clock::now();
+	for (long unsigned int i = 0; i < busca.size(); i++){
+		r.key=busca[i];			
+		removeRB(Raiz,Raiz,r);
+	}
+	auto stop = chrono::high_resolution_clock::now();
+	auto duration = chrono::duration_cast<chrono::microseconds>(stop - start);
+	return duration.count();
 }

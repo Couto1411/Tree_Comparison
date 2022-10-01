@@ -58,3 +58,20 @@ void arquivos(){
     }
     myfile.close();
 }
+
+void shuffleSearch(){
+    ifstream arqbusca("files/search.txt");
+	vector<double> numeros;
+    double numero;
+	for(int i=0; i<10000; i++){
+		arqbusca>>numero;
+		numeros.push_back(numero);
+	}
+    arqbusca.close();
+    auto rng = default_random_engine {};
+    shuffle(begin(numeros), end(numeros), rng);
+    ofstream arqbuscaof("files/search.txt");
+	for(size_t i=0; i<numeros.size(); i++)
+        arqbuscaof<<numeros[i];
+    arqbuscaof.close();
+}

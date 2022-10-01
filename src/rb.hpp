@@ -27,8 +27,10 @@ void RBTransplant(RedBlack **T, RedBlack *valor, RedBlack *Sucessor);
 void RBDeleteFixup(RedBlack **T, RedBlack *valor);
 void deleteRB(RedBlack **T, RedBlack *valor);
 void removeRB(RedBlack **raiz,RedBlack **t, Record r);
-
 RedBlack * TreeMinimun(RedBlack **t);
+
+long long insercaoRB(RedBlack **Raiz,vector<double> numeros,int x);
+long long remocaoRB(RedBlack **Raiz,vector<double> busca);
 
 
 #endif
