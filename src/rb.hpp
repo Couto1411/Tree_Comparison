@@ -1,7 +1,6 @@
 #ifndef RB_H 
 #define RB_H
 
-#include <iostream>
 #include "base.hpp"
 
 struct RedBlack{

@@ -1,7 +1,6 @@
 #ifndef TreeStruc
 #define TreeStruc
 
-#include <queue>
 #include "base.hpp"
 
 struct Tree{

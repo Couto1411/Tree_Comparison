@@ -43,7 +43,7 @@ long long timedSearch(T **raiz, vector<double> busca){
 	auto start = chrono::high_resolution_clock::now();
 	for (long unsigned int i = 0; i < busca.size(); i++){
 		r.key=busca[i];			
-		cout<<Busca(raiz,r)<<endl;
+		printf("%.5f\n",Busca(raiz,r));
 	}
 	auto stop = chrono::high_resolution_clock::now();
 	auto duration = chrono::duration_cast<chrono::microseconds>(stop - start);
