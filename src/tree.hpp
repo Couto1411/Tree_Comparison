@@ -16,7 +16,7 @@ void PrintTreePosOrder(Tree **T);
 void PrintTreeInOrder(Tree **T);
 void PrintInRangeTree(Tree **T);
 
-Record removeTree(Tree **T, Record valor);
-void antecessor(Tree **t, Tree *aux,Record *retorno);
+void removeTree(Tree **T, Record valor);
+void antecessor(Tree **t, Tree *aux);
 
 #endif

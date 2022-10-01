@@ -115,18 +115,24 @@ int main(){
 	// cout<< endl;
 	int reg[] = {10,2,8,5,3,9,16,4,11,1,7,23,14,6};
 	RedBlack*RB;
-	CreateTree(&RB);
 	Record r;
-
-	for(int i=0; i<14; i++){
-		r.key = reg[i];
-		r.value = 1;
-		insertRedBlack(&RB,&RB,&RB, r);
+	for (int j = 0; j < 14; j++)
+	{
+		CreateTree(&RB);
+		for(int i=0; i<14; i++){
+			r.key = reg[i];
+			r.value = 1;
+			insertRedBlack(&RB,&RB,&RB, r);
+		}
+		PrintInRangeRB(&RB);
+		r.key=reg[j];
+		cout<<endl;
+		removeRB(&RB,&RB,r);
+		PrintInRangeRB(&RB);
+		cout<<endl;
+		cout<<endl;
+		cout<<endl;
 	}
-	PrintInRangeRB(&RB);
-	r.key=5;
-	cout<<endl;
-	removeRB(&RB,&RB,r);
-	PrintInRangeRB(&RB);
+	
 
 }

@@ -15,7 +15,7 @@ void insertTree(Tree **T, Record valor){
 		insertTree(&(*T)->FD, valor);
 }
 
-// Printando em ordem, filhos esquerdo, pai, filho direito.
+// Printando em ordem, filhos FEuerdo, pai, filho FDeito.
 void PrintTreeInOrder(Tree **T){
 	if ((*T)){
 		if ((*T)->FE)
@@ -85,48 +85,41 @@ void PrintInRangeTree(Tree **T){
 	}
 }
 
-Record removeTree(Tree **t, Record r){
+void antecessor(Tree **t, Tree *aux){ 
+
+	if ((*t)->FD != nullptr){ 
+		antecessor(&(*t)->FD, aux);
+		return;
+  }
+  	
+  aux->item = (*t)->item;
+  aux = *t; 
+  *t = (*t)->FE;
+  delete aux;
+} 
+
+
+void removeTree(Tree **t, Record r){
 	Tree *aux;
-	Record retorno;
   	
   	if (*t == nullptr){ 
-		retorno.key=-1;
-    	return retorno;
+  		printf("[ERROR]: Record not found!!!\n");
+    	return;
   	}
 
-  	if (r.key < (*t)->item.key){ return removeTree(&(*t)->FE, r); }
-  	if (r.key > (*t)->item.key){ return removeTree(&(*t)->FD, r); }
+  	if (r.key < (*t)->item.key){ removeTree(&(*t)->FE, r); return; }
+  	if (r.key > (*t)->item.key){ removeTree(&(*t)->FD, r); return; }
 
   	if ((*t)->FD == nullptr){ 
   		aux = *t;  
-		retorno=aux->item;
   		*t = (*t)->FE;
     	delete aux;
-    	return retorno;
+    	return;
   	}
 
-  	if ((*t)->FE != nullptr){ 
-		antecessor(&(*t)->FE, *t,&retorno); 
-		return retorno;
-	}
+  	if ((*t)->FE != nullptr){ antecessor(&(*t)->FE, *t); return; }
 
   	aux = *t;  
-	retorno=aux->item;
   	*t = (*t)->FD;
   	delete aux;
-    return retorno;
 }
-
-void antecessor(Tree **t, Tree *aux,Record *retorno){ 
-
-	if ((*t)->FD != nullptr){ 
-		antecessor(&(*t)->FD, aux,retorno);
-		return;
-	}
-
-	*retorno=aux->item;
-	aux->item = (*t)->item;
-	aux = *t; 
-	*t = (*t)->FE;
-	delete aux;
-} 

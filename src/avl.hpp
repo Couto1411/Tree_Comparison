@@ -19,8 +19,8 @@ void PrintAvlPosOrder(Avl *t);
 void PrintInRangeAVL(Avl **T);
 
 //muda o remove devido a necessidade de ponteiro para sub-árvore desbalanceada
-Record removeAvl(Avl **t, Avl **f, Record r);
-void antecessor(Avl **t, Avl *aux,Record *retorno);
+void removeAvl(Avl **t, Avl **f, Record r);
+void antecessor(Avl **t, Avl *aux);
 void rebalanceAvl(Avl **t);
 
 int getWeight(Avl **t);

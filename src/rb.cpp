@@ -285,18 +285,17 @@ void deleteRB(RedBlack **T, RedBlack *valor){
       aux->pai->FD=nullptr;
     delete aux;
   }
+  delete valor;
 }
 
 void RBTransplant(RedBlack **T, RedBlack *valor, RedBlack *sucessor){
   if (valor->pai==nullptr)
     (*T)=sucessor;
-  else if(valor==valor->pai->FE){
+  else if(valor==valor->pai->FE)
     valor->pai->FE=sucessor;
-  }
-  else{
+  else
     valor->pai->FD=sucessor;
-    sucessor->pai=valor->pai;
-  }
+  sucessor->pai=valor->pai;
 }
 
 void removeRB(RedBlack **raiz,RedBlack **t, Record r){
@@ -307,6 +306,8 @@ void removeRB(RedBlack **raiz,RedBlack **t, Record r){
 
   if (r.key < (*t)->item.key){ removeRB(raiz, &(*t)->FE, r); return; }
   if (r.key > (*t)->item.key){ removeRB(raiz, &(*t)->FD, r); return; }
+
+  if ((*raiz)->FD==nullptr && (*raiz)->FE==nullptr){delete (*raiz);(*raiz)=nullptr;return;}
 
   deleteRB(raiz,(*t));
   
@@ -327,7 +328,7 @@ void RBDeleteFixup(RedBlack **T, RedBlack *x){
     if (x==x->pai->FE){
       RedBlack* w=x->pai->FD;
       if (w!=nullptr){
-        if (w!=nullptr&&!w->cor){
+        if (!w->cor){
           w->cor=true;
           x->pai->cor=false;
           rotacaoSimplesEsquerdaRB(T,x->pai);
@@ -343,11 +344,13 @@ void RBDeleteFixup(RedBlack **T, RedBlack *x){
           rotacaoSimplesDireitaRB(T,w);
           w=x->pai->FD;
         }
-        w->cor=x->pai->cor;
-        x->pai->cor=true;
-        w->FD->cor=true;
-        rotacaoSimplesEsquerdaRB(T,x->pai);
-        x=(*T);
+        if(w->FD!=nullptr&&!w->FD->cor){
+          w->cor=x->pai->cor;
+          x->pai->cor=true;
+          w->FD->cor=true;
+          rotacaoSimplesEsquerdaRB(T,x->pai);
+          x=(*T);
+        }
       }
       else
         x=x->pai;
@@ -355,13 +358,13 @@ void RBDeleteFixup(RedBlack **T, RedBlack *x){
     else{
       RedBlack* w=x->pai->FE;
       if (w!=nullptr){
-        if (w!=nullptr&&!w->cor){
+        if (!w->cor){
           w->cor=true;
           x->pai->cor=false;
           rotacaoSimplesDireitaRB(T,x->pai);
           w=x->pai->FE;
         }
-        if (w==nullptr||((w->FD==nullptr||w->FD->cor)&&(w->FE==nullptr||w->FE->cor))){
+        if ((w->FD==nullptr||w->FD->cor)&&(w->FE==nullptr||w->FE->cor)){
           if(w)
             w->cor=false;
           x=x->pai;
@@ -372,11 +375,13 @@ void RBDeleteFixup(RedBlack **T, RedBlack *x){
           rotacaoSimplesEsquerdaRB(T,w);
           w=x->pai->FE;
         }
-        w->cor=x->pai->cor;
-        x->pai->cor=true;
-        w->FE->cor=true;
-        rotacaoSimplesDireitaRB(T,x->pai);
-        x=(*T);
+        if(w->FE!=nullptr&&!w->FE->cor){
+          w->cor=x->pai->cor;
+          x->pai->cor=true;
+          w->FE->cor=true;
+          rotacaoSimplesDireitaRB(T,x->pai);
+          x=(*T);
+        }
       }
       else
         x=x->pai;

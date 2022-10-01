@@ -43,24 +43,23 @@ int isInAvl(Avl *t, Record r){
 	return t->item.key == r.key || isInAvl(t->FE, r) || isInAvl(t->FD, r);
 }
 
-void antecessor(Avl **t, Avl *aux,Record *retorno){ 
+void antecessor(Avl **t, Avl *aux){ 
 
 	if ((*t)->FD != nullptr){ 
-		antecessor(&(*t)->FD, aux,retorno);
+		antecessor(&(*t)->FD, aux);
 		return;
-	}
-	
-	*retorno=aux->item;
-	aux->item = (*t)->item;
-	aux = *t; 
-	*t = (*t)->FE;
-	delete aux;
+  	}
+  	
+  	aux->item = (*t)->item;
+  	aux = *t; 
+  	*t = (*t)->FE;
+  	delete aux;
 } 
 
 void rebalanceAvl(Avl **t){
 	int balance;
-	int FE = 0;
-	int FD = 0;
+  	int FE = 0;
+  	int FD = 0;
 
 	balance = getWeight(&(*t)->FE) - getWeight(&(*t)->FD);
 	if((*t)->FE)
@@ -80,42 +79,38 @@ void rebalanceAvl(Avl **t){
 
 }
 
-Record removeAvl(Avl **t, Avl **f, Record r){
+void removeAvl(Avl **t, Avl **f, Record r){
 	Avl *aux;
-	Record retorno;
-	if (*t == nullptr){ 
-		retorno.key=-1;
-		return retorno;
-	}
+  	
+  	if (*t == nullptr){ 
+  		printf("[ERROR]: Record not found!!!\n");
+    	return;
+  	}
 
-	if (r.key < (*t)->item.key){ return removeAvl(&(*t)->FE, t, r);}
-	if (r.key > (*t)->item.key){ return removeAvl(&(*t)->FD, t, r);}
+  	if (r.key < (*t)->item.key){ removeAvl(&(*t)->FE, t, r); return;}
+  	if (r.key > (*t)->item.key){ removeAvl(&(*t)->FD, t, r); return;}
 
-	if ((*t)->FD == nullptr){ 
-		aux = *t;  
-		retorno=aux->item;
-		*t = (*t)->FE;
-		if((*f)!=nullptr)
-			rebalanceAvl(f);
-		delete aux;
-		return retorno;
-	}
+  	if ((*t)->FD == nullptr){ 
+  		aux = *t;  
+  		*t = (*t)->FE;
+    	delete aux;
+    	rebalanceAvl(f);
+    	return;
+  	}
 
-	if ((*t)->FE != nullptr){ 
-		antecessor(&(*t)->FE, *t,&retorno);
-		rebalanceAvl(t);
-		rebalanceAvl(f);
-		return retorno;
-	}
-	
-	aux = *t;  
-	retorno=aux->item;
-	*t = (*t)->FD;
-	delete aux;
-	rebalanceAvl(t);
-	rebalanceAvl(f); 	
-	return retorno;
-	
+  	if ((*t)->FE != nullptr){ 
+  		antecessor(&(*t)->FE, *t);
+  		rebalanceAvl(t);
+  		rebalanceAvl(f);
+  		return;
+  	}
+
+  	aux = *t;  
+  	*t = (*t)->FD;
+  	delete aux;
+  	rebalanceAvl(t);
+  	rebalanceAvl(f); 	
+  	
 }
 
 void PrintAvlPreOrder(Avl *t){
