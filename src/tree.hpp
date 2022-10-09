@@ -18,7 +18,7 @@ void PrintInRangeTree(Tree **T);
 void removeTree(Tree **T, Record valor);
 void antecessor(Tree **t, Tree *aux);
 
-long long insercaoTree(Tree **Raiz,vector<double> numeros,int x);
-long long remocaoTree(Tree **Raiz,vector<double> busca);
+long insercaoTree(Tree **Raiz,vector<double> numeros,int x);
+long remocaoTree(Tree **Raiz,vector<double> busca);
 
 #endif

@@ -31,6 +31,6 @@ void rotacaoDuplaDireita(Avl **t);
 void rotacaoDuplaEsquerda(Avl **t);
 
 
-long long insercaoAvl(Avl **Raiz,vector<double> numeros,int x);
-long long remocaoAvl(Avl **Raiz,vector<double> busca);
+long insercaoAvl(Avl **Raiz,vector<double> numeros,int x);
+long remocaoAvl(Avl **Raiz,vector<double> busca);
 #endif

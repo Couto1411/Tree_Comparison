@@ -3,15 +3,14 @@
 
 #include <iostream>
 #include <queue>
-#include <chrono>
-#include <ctime>
+#include <time.h>
 #include <fstream>
 using namespace std;
 
 struct Tempos{
-	vector<long long> Insert;
-	vector<long long> Search;
-	vector<long long> Remove;
+	vector<long> Insert={0,0,0,0};
+	vector<long> Search={0,0,0,0};
+	vector<long> Remove={0,0,0,0};
 };
 
 struct Record{
@@ -38,16 +37,15 @@ double Busca(T **raiz, Record valor){
 }
 
 template <typename T>
-long long timedSearch(T **raiz, vector<double> busca){
+long timedSearch(T **raiz, vector<double> busca){
 	Record r;
-	auto start = chrono::high_resolution_clock::now();
+	auto t = clock();
 	for (long unsigned int i = 0; i < busca.size(); i++){
 		r.key=busca[i];			
 		printf("%.5f\n",Busca(raiz,r));
 	}
-	auto stop = chrono::high_resolution_clock::now();
-	auto duration = chrono::duration_cast<chrono::microseconds>(stop - start);
-	return duration.count();
+	auto duration = clock() - t;
+	return duration;
 }
 
 #endif

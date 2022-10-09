@@ -212,26 +212,24 @@ void rotacaoDuplaEsquerda(Avl **t){
 	rotacaoSimplesEsquerda(t);
 }
 
-long long insercaoAvl(Avl **Raiz,vector<double> numeros,int x){
+long insercaoAvl(Avl **Raiz,vector<double> numeros,int x){
 	Record r;
 	r.value = 1;
-	auto start = chrono::high_resolution_clock::now();
+	auto t = clock();
 	for(int i=0; i<x; i++){
 		r.key = numeros[i];
 		insertAvl(Raiz,r);
 	}
-	auto stop = chrono::high_resolution_clock::now();
-	auto duration = chrono::duration_cast<chrono::microseconds>(stop - start);
-	return duration.count();
+	auto duration = clock() - t;
+	return duration;
 }
-long long remocaoAvl(Avl **Raiz,vector<double> busca){
+long remocaoAvl(Avl **Raiz,vector<double> busca){
 	Record r;
-	auto start = chrono::high_resolution_clock::now();
+	auto t = clock();
 	for (long unsigned int i = 0; i < busca.size(); i++){
 		r.key=busca[i];			
 		removeAvl(Raiz,Raiz,r);
 	}
-	auto stop = chrono::high_resolution_clock::now();
-	auto duration = chrono::duration_cast<chrono::microseconds>(stop - start);
-	return duration.count();
+	auto duration = clock() - t;
+	return duration;
 }
