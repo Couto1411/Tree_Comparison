@@ -50,30 +50,56 @@ Para esses casos precisamos determinar um sucessor, e faremos isso a partir do m
       <td><img src="imgs/caso3.gif" width=400/></td>
    </tr>
 </table>
-<table>
-   <tr>
-      <td>Caso 4.1:</td>
-      <td>Caso 4.2:</td>
-      <td>Caso 4.3:</td>
-   </tr>
-   <tr>
-      <td><img src="imgs/caso1.gif" width=185/></td>
-      <td><img src="imgs/caso2.gif" /></td>
-      <td><img src="imgs/caso3.gif" width=400/></td>
-   </tr>
-</table>
-</center>
+</center>    
+    
+A lógica presente no main faz o seguinte, a partir do valor atribuído a *qtd* serão feitos essa quantidade de testes, para todas as estruturas possuímos uma struct *Tempos* em que o tempo de inserção, busca e remoção são somados em cada posição do vetor referente a cada arquivo de dados, isso é feito para todos os teste.   
+Para cada estrutura, todos os dados de um arquivo são inseridos, em seguida todos os 10000 dados do arquivo de busca são procurados na estrutura e retornados para o usuário (caso não sejam encontrados, é retornado -1), e por fim, esses mesmos 10000 dados são removidos das estruturas. Isso é feito para cada uma das 6 estruturas.        
+Logo após é apresentado ao usuário as opções para imprimir os tempos de cada árvore, de tal maneira:   
 
+> Insertion: X Y Z W    
+> Search: X Y Z W     
+> Removal: X Y Z W    
+
+Onde X, Y, Z e W se referem respectivamente aos arquivos de 500, 5000, 50000 e 500000 números.   
+Também existe a opção de mostrar o ranking de cada, método escolhido para cada arquivo, por exemplo, caso o método escolhido seja de busca no arquivo de 50000:
+
+> 1 - Unordered_Map     
+> 2 - Map    
+> 3 - Redblack    
+> 4 - Binary    
+> 5 - Avl    
+> 6 - Vector    
 
 Obs.:      
-- O arquivo "result.txt" deve ser observado para ver a codificação final. 
+- Para randomizar novamente os arquivos, basta descomentar o inicio do código e o include da classe "rand.hpp". 
 
 # Exemplo de execução
+Após executar o programa, com *qtd*=10, obtivemos os seguintes rankings no arquivo de 500000:
+<center>
+<table>
+   <tr>
+      <td>Insertion</td>
+      <td>Search</td>
+      <td>Remove</td>
+   </tr>
+   <tr>
+      <td><img src="imgs/insertiontime.jpg"/></td>
+      <td><img src="imgs/searchtime.jpg" /></td>
+      <td><img src="imgs/removetime.jpg"/></td>
+   </tr>
+</table>
+</center> 
 
+Printamos tambem os tempos da RedBlack para testar o método:    
+<img src="imgs/times.jpg"/>
 
 # Conclusão
 
-O algoritmo de huffman para redução de arquivos é muito bom quando palavras possuem várias recorrências, já que transformam essa unica palavra pra uma muito menor. (Exemplo em filosofia.txt e result.txt, basta comparar o tamanho do arquivo)
+A partir de uma pequena quantidade de casos testes foi possível definir a estrutura unordered_map, ou hash, como a mais rápida, podemos atribuir esse resultado ao cálculo de chaves únicas que permitem a rápida localização dos itens.    
+Vemos também que das três estruturas de árvores que possuíamos, a mais rápida foi a RedBlack, devemos atribuir isso ao seu alto nível de balanceamento, não requerindo tanto tempo na inserção quanto sua prima AVL e batendo o tempo de busca e remoção dela e da binária, devido justamente ao seu alto grau de balanceamento.    
+Vimos também que um vetor ordenadose tornou extremamente inceficiente, por ter de ser percorrido inteiramente até achar o item necessário para remoção.    
+Observando os valores individuais de cada estrutura podemos dizer que retirando o unordered_map e o vector, as estruturas se assemelham em quesito tempo, claro que uma tem ganhos sobre a outra, mas analisando as estruturas binária, map e avl, seus tempos se aproximaram bastante para fazê-las até trocarem de posição dependendo do método.    
+Concluímos também que apesar de os métodos de remoção e inserção da RedBlack parecerem custoso à primeira vista, eles na verdade possuem o segundo melhor tempo das estruturas em 2/3 métodos.
 
 # Compilação e Execução
 

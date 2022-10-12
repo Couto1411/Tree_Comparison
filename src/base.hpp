@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <queue>
-#include <time.h>
+#include <ctime>
 #include <fstream>
 using namespace std;
 
@@ -47,5 +47,20 @@ long timedSearch(T **raiz, vector<double> busca){
 	auto duration = clock() - t;
 	return duration;
 }
+
+template <typename T>
+void printTempos(T classe, int qtd,string nome){
+	cout<< "Tempos "<<nome<<":" <<endl<< "Insertion: ";
+	for (size_t i = 0; i < classe.Insert.size(); i++)
+		cout<< (classe.Insert[i]/qtd)<< " ";
+	cout<< endl << "Search: ";
+	for (size_t i = 0; i < classe.Search.size(); i++)
+		cout<< (classe.Search[i]/qtd)<< " ";
+	cout<< endl << "Removal: ";
+	for (size_t i = 0; i < classe.Remove.size(); i++)
+		cout<< (classe.Remove[i]/qtd)<< " ";
+	cout<<endl;
+}
+
 
 #endif

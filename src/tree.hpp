@@ -3,22 +3,22 @@
 
 #include "base.hpp"
 
-struct Tree{
+struct Binary{
 	Record item;
-	Tree *FE, *FD;
+	Binary *FE, *FD;
 };
 
-void insertTree(Tree **T, Record valor);
+void insertTree(Binary **T, Record valor);
 
-void PrintTreePreOrder(Tree **T);
-void PrintTreePosOrder(Tree **T);
-void PrintTreeInOrder(Tree **T);
-void PrintInRangeTree(Tree **T);
+void PrintTreePreOrder(Binary **T);
+void PrintTreePosOrder(Binary **T);
+void PrintTreeInOrder(Binary **T);
+void PrintInRangeTree(Binary **T);
 
-void removeTree(Tree **T, Record valor);
-void antecessor(Tree **t, Tree *aux);
+void removeTree(Binary **T, Record valor);
+void antecessor(Binary **t, Binary *aux);
 
-long insercaoTree(Tree **Raiz,vector<double> numeros,int x);
-long remocaoTree(Tree **Raiz,vector<double> busca);
+long insercaoTree(Binary **Raiz,vector<double> numeros,int x);
+long remocaoTree(Binary **Raiz,vector<double> busca);
 
 #endif

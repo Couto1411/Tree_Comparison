@@ -2,6 +2,7 @@
 #include "avl.hpp"
 #include "tree.hpp"
 #include "vetor_map.hpp"
+#include "ranking.hpp"
 // #include "rand.hpp"
 
 int main(){
@@ -13,11 +14,10 @@ int main(){
 
 	double numero;
 	Tempos avlTree,binaryTree,redblackTree, unorderedMap, Map, Vetor;
-	vector<double> numeros;
-	vector<double> busca;
-	RedBlack *redblack; Avl *avl; Tree *binary;
+	vector<double> numeros, busca;
+	RedBlack *redblack; Avl *avl; Binary *binary;
 	unordered_map<double,Record> hash; map<double,Record> map; vector<double> vetor;
-	int x=50,qtd=100;
+	int x=50,qtd=10,temp,temp2;
 	ifstream arqbusca,myfile;
 	arqbusca.open("files/search.txt",ios::in);
 	for(int i=0; i<10000; i++){
@@ -88,70 +88,45 @@ int main(){
 		}
 		x=50;
 	}
-	cout<< "Tempos Binary Tree:"<<endl<< "Insertion: ";
-	for (size_t i = 0; i < binaryTree.Insert.size(); i++)
-		cout<< (binaryTree.Insert[i]/qtd)<< " ";
-	cout<< endl << "Search: ";
-	for (size_t i = 0; i < binaryTree.Search.size(); i++)
-		cout<< (binaryTree.Search[i]/qtd)<< " ";
-	cout<< endl << "Removal: ";
-	for (size_t i = 0; i < binaryTree.Remove.size(); i++)
-		cout<< (binaryTree.Remove[i]/qtd)<< " ";
-	cout<<endl<<endl;
-
-	cout<< "Tempos AVL Tree:"<<endl<< "Insertion: ";
-	for (size_t i = 0; i < avlTree.Insert.size(); i++)
-		cout<< (avlTree.Insert[i]/qtd)<< " ";
-	cout<< endl << "Search: ";
-	for (size_t i = 0; i < avlTree.Search.size(); i++)
-		cout<< (avlTree.Search[i]/qtd)<< " ";
-	cout<< endl << "Removal: ";
-	for (size_t i = 0; i < avlTree.Remove.size(); i++)
-		cout<< (avlTree.Remove[i]/qtd)<< " ";
-	cout<<endl<<endl;
-	
-	cout<< "Tempos Redblack Tree:"<<endl<< "Insertion: ";
-	for (size_t i = 0; i < redblackTree.Insert.size(); i++)
-		cout<< (redblackTree.Insert[i]/qtd)<< " ";
-	cout<< endl << "Search: ";
-	for (size_t i = 0; i < redblackTree.Search.size(); i++)
-		cout<< (redblackTree.Search[i]/qtd)<< " ";
-	cout<< endl << "Removal: ";
-	for (size_t i = 0; i < redblackTree.Remove.size(); i++)
-		cout<< (redblackTree.Remove[i]/qtd)<< " ";
-	cout<<endl<<endl;
-	
-	cout<< "Tempos Vetor:"<<endl<< "Insertion: ";
-	for (size_t i = 0; i < Vetor.Insert.size(); i++)
-		cout<< (Vetor.Insert[i]/qtd)<< " ";
-	cout<< endl << "Search: ";
-	for (size_t i = 0; i < Vetor.Search.size(); i++)
-		cout<< (Vetor.Search[i]/qtd)<< " ";
-	cout<< endl << "Removal: ";
-	for (size_t i = 0; i < Vetor.Remove.size(); i++)
-		cout<< (Vetor.Remove[i]/qtd)<< " ";
-	cout<<endl<<endl;
-	
-	cout<< "Tempos Hash:"<<endl<< "Insertion: ";
-	for (size_t i = 0; i < unorderedMap.Insert.size(); i++)
-		cout<< (unorderedMap.Insert[i]/qtd)<< " ";
-	cout<< endl << "Search: ";
-	for (size_t i = 0; i < unorderedMap.Search.size(); i++)
-		cout<< (unorderedMap.Search[i]/qtd)<< " ";
-	cout<< endl << "Removal: ";
-	for (size_t i = 0; i < unorderedMap.Remove.size(); i++)
-		cout<< (unorderedMap.Remove[i]/qtd)<< " ";
-	cout<<endl<<endl;
-	
-	cout<< "Tempos Map:"<<endl<< "Insertion: ";
-	for (size_t i = 0; i < Map.Insert.size(); i++)
-		cout<< (Map.Insert[i]/qtd)<< " ";
-	cout<< endl << "Search: ";
-	for (size_t i = 0; i < Map.Search.size(); i++)
-		cout<< (Map.Search[i]/qtd)<< " ";
-	cout<< endl << "Removal: ";
-	for (size_t i = 0; i < Map.Remove.size(); i++)
-		cout<< (Map.Remove[i]/qtd)<< " ";
-
-
+	while (true){
+		cout<< "\nOpções:\n1) Print tempos\n2) Print rankings\n0) Exit"<<endl;
+		cin>>temp;
+		if(temp==1){
+			cout<< "1) Binary Tree\n2) AVL Tree\n3) RedBlack Tree\n4) Ordered Vector\n5) Unordered Map\n6) Map\n0) Exit"<<endl;
+			cin>>temp;
+			switch (temp)
+			{
+			case 1:
+				printTempos(binaryTree, qtd,"Binary");
+				break;
+			case 2:
+				printTempos(avlTree, qtd,"AVL");
+				break;
+			case 3:
+				printTempos(redblackTree, qtd,"RedBlack");
+				break;
+			case 4:
+				printTempos(Vetor, qtd,"Vector");
+				break;
+			case 5:
+				printTempos(unorderedMap, qtd,"Unordered Map");
+				break;
+			case 6:
+				printTempos(Map, qtd,"Map");
+				break;
+			default:
+				break;
+			}
+		}
+		else if (temp==2){
+			cout<< "1) Tempo de inserção\n2) Tempo de busca\n3) Tempo de remoção"<<endl;
+			cin>>temp;
+			cout<< "1) 500\n2) 5000\n3) 50000\n4)500000"<<endl;
+			cin>>temp2;
+			ranking(binaryTree,avlTree,redblackTree,Vetor,unorderedMap,Map,(temp2-1),temp);		
+		}else if (temp==0){
+			break;
+		}
+	}
+	exit(0);
 }

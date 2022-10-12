@@ -1,9 +1,9 @@
 #include "tree.hpp"
 
-void insertTree(Tree **T, Record valor){
+void insertTree(Binary **T, Record valor){
 	if ((*T) == nullptr)
 	{
-		(*T) = new Tree;
+		(*T) = new Binary;
 		(*T)->item = valor;
 		(*T)->FE = nullptr;
 		(*T)->FD = nullptr;
@@ -16,7 +16,7 @@ void insertTree(Tree **T, Record valor){
 }
 
 // Printando em ordem, filhos FEuerdo, pai, filho FDeito.
-void PrintTreeInOrder(Tree **T){
+void PrintTreeInOrder(Binary **T){
 	if ((*T)){
 		if ((*T)->FE)
 			PrintTreeInOrder(&(*T)->FE);
@@ -29,7 +29,7 @@ void PrintTreeInOrder(Tree **T){
 }
 
 // Printando pai antes dos filhos.
-void PrintTreePreOrder(Tree **T){
+void PrintTreePreOrder(Binary **T){
 	if ((*T)){
 		printf("%.2f, ", (*T)->item.key);
 		if ((*T)->FE)
@@ -42,7 +42,7 @@ void PrintTreePreOrder(Tree **T){
 }
 
 // Printando filhos antes do pai.
-void PrintTreePosOrder(Tree **T){
+void PrintTreePosOrder(Binary **T){
 	if ((*T)){
 		if ((*T)->FE)
 			PrintTreePosOrder(&(*T)->FE);
@@ -54,11 +54,11 @@ void PrintTreePosOrder(Tree **T){
 		printf("0");
 }
 
-void PrintInRangeTree(Tree **T){
+void PrintInRangeTree(Binary **T){
 	if ((*T)!=nullptr)
 	{
-		queue<Tree*> tempFila;
-		Tree *temp;
+		queue<Binary*> tempFila;
+		Binary *temp;
 		int tempCont=1,cont=0;
 		tempFila.push((*T));
 		while (!(tempFila.empty())){
@@ -85,7 +85,7 @@ void PrintInRangeTree(Tree **T){
 	}
 }
 
-void antecessor(Tree **t, Tree *aux){ 
+void antecessor(Binary **t, Binary *aux){ 
 
 	if ((*t)->FD != nullptr){ 
 		antecessor(&(*t)->FD, aux);
@@ -99,8 +99,8 @@ void antecessor(Tree **t, Tree *aux){
 } 
 
 
-void removeTree(Tree **t, Record r){
-	Tree *aux;
+void removeTree(Binary **t, Record r){
+	Binary *aux;
   	
   	if (*t == nullptr){ 
     	return;
@@ -124,7 +124,7 @@ void removeTree(Tree **t, Record r){
 }
 
 
-long insercaoTree(Tree **Raiz,vector<double> numeros,int x){
+long insercaoTree(Binary **Raiz,vector<double> numeros,int x){
 	Record r;
 	auto t = clock();
 	for(int i=0; i<x; i++){
@@ -134,7 +134,7 @@ long insercaoTree(Tree **Raiz,vector<double> numeros,int x){
 	auto duration = clock() - t;
 	return duration;
 }
-long remocaoTree(Tree **Raiz,vector<double> busca){
+long remocaoTree(Binary **Raiz,vector<double> busca){
 	Record r;
 	auto t = clock();
 	for (long unsigned int i = 0; i < busca.size(); i++){
