@@ -28,8 +28,8 @@ void deleteRB(RedBlack **T, RedBlack *valor);
 void removeRB(RedBlack **raiz,RedBlack **t, Record r);
 RedBlack * TreeMinimun(RedBlack **t);
 
-long insercaoRB(RedBlack **Raiz,vector<double> numeros,int x);
-long remocaoRB(RedBlack **Raiz,vector<double> busca);
+float insercaoRB(RedBlack **Raiz,vector<double> numeros,int x);
+float remocaoRB(RedBlack **Raiz,vector<double> busca);
 
 
 #endif

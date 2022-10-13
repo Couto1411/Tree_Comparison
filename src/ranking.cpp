@@ -1,11 +1,11 @@
 #include "ranking.hpp"
-bool compare(const pair<string,long> &a,const pair<string,long> &b){
+bool compare(const pair<string,float> &a,const pair<string,float> &b){
 	return a.second<b.second;
 }
 
 void ranking(Tempos binaryTree,Tempos avlTree,Tempos redblackTree,Tempos Vetor,Tempos unorderedMap,Tempos Map, int grandeza, int metodo){
-	vector<pair<string,long>> rank;
-	pair<string,long> par;
+	vector<pair<string,float>> rank;
+	pair<string,float> par;
 	if (metodo==1){
 		rank.push_back(make_pair("Binary",binaryTree.Insert[grandeza]));
 		rank.push_back(make_pair("Avl",avlTree.Insert[grandeza]));

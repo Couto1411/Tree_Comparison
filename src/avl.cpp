@@ -212,24 +212,24 @@ void rotacaoDuplaEsquerda(Avl **t){
 	rotacaoSimplesEsquerda(t);
 }
 
-long insercaoAvl(Avl **Raiz,vector<double> numeros,int x){
+float insercaoAvl(Avl **Raiz,vector<double> numeros,int x){
 	Record r;
 	r.value = 1;
-	auto t = clock();
+	size_t t = clock();
 	for(int i=0; i<x; i++){
 		r.key = numeros[i];
 		insertAvl(Raiz,r);
 	}
-	auto duration = clock() - t;
-	return duration;
+	t = clock() - t;
+	return (float(t)/CLOCKS_PER_SEC);
 }
-long remocaoAvl(Avl **Raiz,vector<double> busca){
+float remocaoAvl(Avl **Raiz,vector<double> busca){
 	Record r;
-	auto t = clock();
+	size_t t = clock();
 	for (long unsigned int i = 0; i < busca.size(); i++){
 		r.key=busca[i];			
 		removeAvl(Raiz,Raiz,r);
 	}
-	auto duration = clock() - t;
-	return duration;
+	t = clock() - t;
+	return (float(t)/CLOCKS_PER_SEC);
 }

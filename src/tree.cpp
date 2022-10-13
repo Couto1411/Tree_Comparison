@@ -124,23 +124,23 @@ void removeTree(Binary **t, Record r){
 }
 
 
-long insercaoTree(Binary **Raiz,vector<double> numeros,int x){
+float insercaoTree(Binary **Raiz,vector<double> numeros,int x){
 	Record r;
-	auto t = clock();
+	size_t t = clock();
 	for(int i=0; i<x; i++){
 		r.key = numeros[i];
 		insertTree(Raiz,r);
 	}
-	auto duration = clock() - t;
-	return duration;
+	t = clock() - t;
+	return (float(t)/CLOCKS_PER_SEC);
 }
-long remocaoTree(Binary **Raiz,vector<double> busca){
+float remocaoTree(Binary **Raiz,vector<double> busca){
 	Record r;
-	auto t = clock();
+	size_t t = clock();
 	for (long unsigned int i = 0; i < busca.size(); i++){
 		r.key=busca[i];			
 		removeTree(Raiz,r);
 	}
-	auto duration = clock() - t;
-	return duration;
+	t = clock() - t;
+	return (float(t)/CLOCKS_PER_SEC);
 }

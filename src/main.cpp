@@ -17,7 +17,7 @@ int main(){
 	vector<double> numeros, busca;
 	RedBlack *redblack; Avl *avl; Binary *binary;
 	unordered_map<double,Record> hash; map<double,Record> map; vector<double> vetor;
-	int x=50,qtd=10,temp,temp2;
+	int x=50,qtd=1,temp,temp2;
 	ifstream arqbusca,myfile;
 	arqbusca.open("files/search.txt",ios::in);
 	for(int i=0; i<10000; i++){

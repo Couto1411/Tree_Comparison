@@ -8,9 +8,9 @@
 using namespace std;
 
 struct Tempos{
-	vector<long> Insert={0,0,0,0};
-	vector<long> Search={0,0,0,0};
-	vector<long> Remove={0,0,0,0};
+	vector<float> Insert={0,0,0,0};
+	vector<float> Search={0,0,0,0};
+	vector<float> Remove={0,0,0,0};
 };
 
 struct Record{
@@ -37,15 +37,15 @@ double Busca(T **raiz, Record valor){
 }
 
 template <typename T>
-long timedSearch(T **raiz, vector<double> busca){
+float timedSearch(T **raiz, vector<double> busca){
 	Record r;
-	auto t = clock();
+	size_t t = clock();
 	for (long unsigned int i = 0; i < busca.size(); i++){
 		r.key=busca[i];			
 		printf("%.5f\n",Busca(raiz,r));
 	}
-	auto duration = clock() - t;
-	return duration;
+	t = clock() - t;
+	return (float(t)/CLOCKS_PER_SEC);
 }
 
 template <typename T>

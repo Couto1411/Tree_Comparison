@@ -389,23 +389,23 @@ void RBDeleteFixup(RedBlack **T, RedBlack *x){
   x->cor=true;  
 }
 
-long insercaoRB(RedBlack **Raiz,vector<double> numeros,int x){
+float insercaoRB(RedBlack **Raiz,vector<double> numeros,int x){
 	Record r;
-	auto t = clock();
+	size_t t = clock();
 	for(int i=0; i<x; i++){
 		r.key = numeros[i];
 		insertRB(Raiz,Raiz,Raiz,r);
 	}
-	auto duration = clock() - t;
-	return duration;
+	t = clock() - t;
+	return (float(t)/CLOCKS_PER_SEC);
 }
-long remocaoRB(RedBlack **Raiz,vector<double> busca){
+float remocaoRB(RedBlack **Raiz,vector<double> busca){
 	Record r;
-	auto t = clock();
+	size_t t = clock();
 	for (long unsigned int i = 0; i < busca.size(); i++){
 		r.key=busca[i];			
 		removeRB(Raiz,Raiz,r);
 	}
-	auto duration = clock() - t;
-	return duration;
+	t = clock() - t;
+	return (float(t)/CLOCKS_PER_SEC);
 }
