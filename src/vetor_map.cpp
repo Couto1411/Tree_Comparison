@@ -36,8 +36,9 @@ float remocaoUnorderedMap(unordered_map<double, Record> *hash,vector<double> bus
 
 float insercaoVetor(vector<double> *vetor,vector<double> numeros){
 	size_t t = clock();
-    *vetor=numeros;
-    sort((*vetor).begin(),(*vetor).end());
+	(*vetor)=numeros;
+	Quicksort sort((*vetor));
+    sort.Sort();
 	t = clock() - t;
 	return (float(t)/CLOCKS_PER_SEC);
 }
@@ -45,7 +46,7 @@ float insercaoVetor(vector<double> *vetor,vector<double> numeros){
 float buscaVetor(vector<double> *vetor,vector<double> busca){
 	size_t t = clock();
 	for(long unsigned int i=0; i<busca.size(); i++){
-        if ( find((*vetor).begin(), (*vetor).end(), busca[i]) == (*vetor).end() )
+        if (binary_search((*vetor).begin(), (*vetor).end(), busca[i]))
             printf("%d\n",-1);
         else
             printf("%.5f\n",busca[i]);

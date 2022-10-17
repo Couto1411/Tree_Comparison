@@ -1,7 +1,7 @@
 # Tree_Comparison
 O objetivo do processo é comparar as estruturas em árvore vistas em sala, binária, avl e rubro negra, quanto a inserção, busca e remoção de pequenas,médias e grandes quantidades de pontos flutuantes. Para controle, usaremos também um vetor ordenado e as estruturas de c++, map e unordered_map. As comparações serão feitas quanto ao tempo em microsegundos.     
 # Estrutura
-Foi-se utilizado as estruturas de árvore [Bynari_Tree](https://github.com/mpiress/basic_tree), [AVL_Tree](https://github.com/mpiress/avl_tree), [RedBlack_Tree](https://github.com/mpiress/RedBlack) (como o repositório RedBlack não possuia o método de remoção, foi necessário criá-lo, baseado na litaratura do livro Introduction to Algorithms - Thomas Cormen, mais detalhes na seção de lógica), além de utilizar as bibliotecas \<map>, <unordered_map> e \<vector>.     
+Foi-se utilizado as estruturas de árvore [Bynari_Tree](https://github.com/mpiress/basic_tree), [AVL_Tree](https://github.com/mpiress/avl_tree), [RedBlack_Tree](https://github.com/mpiress/RedBlack) (como o repositório RedBlack não possuia o método de remoção, foi necessário criá-lo, baseado na litaratura do livro Introduction to Algorithms - Thomas Cormen, páginas 13-9 e 13-10 , mais detalhes na seção de lógica), além de utilizar as bibliotecas \<map>, <unordered_map> e \<vector>.     
 Para comparação final temos uma estrutura *Tempos* que possui três vectors como atributos, Insert, Search e Remove, que armazem os tempos de cada operação nos arquivos de 500, 5000, 50000 e 500000 números.     
 
 # Arquivos    
@@ -97,9 +97,12 @@ Printamos tambem os tempos da RedBlack para testar o método:
 
 A partir de uma pequena quantidade de casos testes foi possível definir a estrutura unordered_map, ou hash, como a mais rápida, podemos atribuir esse resultado ao cálculo de chaves únicas que permitem a rápida localização dos itens.    
 Vemos também que das três estruturas de árvores que possuíamos, a mais rápida foi a RedBlack, devemos atribuir isso ao seu alto nível de balanceamento, não requerindo tanto tempo na inserção quanto sua prima AVL e batendo o tempo de busca e remoção dela e da binária, devido justamente ao seu alto grau de balanceamento.    
-Vimos também que um vetor ordenadose tornou extremamente inceficiente, por ter de ser percorrido inteiramente até achar o item necessário para remoção.    
+Vimos também que um vetor ordenado se tornou extremamente inceficiente quanto à remoção, por ter de ser percorrido inteiramente até achar o item necessário para remoção.    
 Observando os valores individuais de cada estrutura podemos dizer que retirando o unordered_map e o vector, as estruturas se assemelham em quesito tempo, claro que uma tem ganhos sobre a outra, mas analisando as estruturas binária, map e avl, seus tempos se aproximaram bastante para fazê-las até trocarem de posição dependendo do método.    
-Concluímos também que apesar de os métodos de remoção e inserção da RedBlack parecerem custoso à primeira vista, eles na verdade possuem o segundo melhor tempo das estruturas em 2/3 métodos.
+Concluímos também que apesar de os métodos de remoção e inserção da RedBlack parecerem custoso à primeira vista, eles na verdade possuem o segundo melhor tempo das árvores em 2/3 métodos. A seguir, gráficos de desempenho:      
+<center>
+<img src="imgs/graficos.jpg"/>
+</center>
 
 # Compilação e Execução
 

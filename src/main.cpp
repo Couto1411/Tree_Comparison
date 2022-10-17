@@ -62,13 +62,6 @@ int main(){
 			redblackTree.Search[i]+=(timedSearch(&redblack,busca));
 			// remocao RB
 			redblackTree.Remove[i]+=(remocaoRB(&redblack,busca));
-
-			// insercao Vetor
-			Vetor.Insert[i]+=(insercaoVetor(&vetor,numeros));
-			// pesquisa Vetor
-			Vetor.Search[i]+=(buscaVetor(&vetor,busca));
-			// remocao Vetor
-			Vetor.Remove[i]+=(remocaoVetor(&vetor,busca));
 			
 			// insercao Hash
 			unorderedMap.Insert[i]+=(insercaoUnorderedMap(&hash,numeros,x));
@@ -83,6 +76,13 @@ int main(){
 			Map.Search[i]+=(buscaMap(&map,busca));
 			// remocao Map
 			Map.Remove[i]+=(remocaoMap(&map,busca));
+
+			// insercao Vetor
+			Vetor.Insert[i]+=(insercaoVetor(&vetor,numeros));
+			// pesquisa Vetor
+			Vetor.Search[i]+=(buscaVetor(&vetor,busca));
+			// remocao Vetor
+			Vetor.Remove[i]+=(remocaoVetor(&vetor,busca));
 
 			numeros.clear();
 		}

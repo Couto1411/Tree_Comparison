@@ -4,6 +4,7 @@
 #include <algorithm> 
 #include <unordered_map>
 #include <map>
+#include "quicksort.hpp"
 #include "base.hpp"
 
 float insercaoUnorderedMap(unordered_map<double,Record> *hash,vector<double> numeros, int x);
