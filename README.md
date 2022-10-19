@@ -95,7 +95,7 @@ Printamos tambem os tempos da RedBlack para testar o método:
 
 # Conclusão
 
-A partir de uma pequena quantidade de casos testes foi possível definir a estrutura unordered_map, ou hash, como a mais rápida, podemos atribuir esse resultado ao cálculo de chaves únicas que permitem a rápida localização dos itens.    
+A partir de uma pequena quantidade de casos testes com 500000 dados foi possível definir a estrutura unordered_map, ou hash, como a mais rápida, podemos atribuir esse resultado ao cálculo de chaves únicas que permitem a rápida localização dos itens.    
 Vemos também que das três estruturas de árvores que possuíamos, a mais rápida foi a RedBlack, devemos atribuir isso ao seu alto nível de balanceamento, não requerindo tanto tempo na inserção quanto sua prima AVL e batendo o tempo de busca e remoção dela e da binária, devido justamente ao seu alto grau de balanceamento.    
 Vimos também que um vetor ordenado se tornou extremamente inceficiente quanto à remoção, por ter de ser percorrido inteiramente até achar o item necessário para remoção.    
 Observando os valores individuais de cada estrutura podemos dizer que retirando o unordered_map e o vector, as estruturas se assemelham em quesito tempo, claro que uma tem ganhos sobre a outra, mas analisando as estruturas binária, map e avl, seus tempos se aproximaram bastante para fazê-las até trocarem de posição dependendo do método.    
@@ -103,6 +103,45 @@ Concluímos também que apesar de os métodos de remoção e inserção da RedBl
 <center>
 <img src="imgs/graficos.jpg"/>
 </center>
+A seguir apresentamos uma tabela com a percentagem de melhora entre a unordered_map e as outras estruturas, exemplo, a busca da Redblack está como 220,68% ou seja, a unordered_map é 2,2 vezes melhor que a Redblack nesse quesito.
+<table>
+   <tr>
+      <td></td>
+      <td>Insertion</td>
+      <td>Search</td>
+      <td>Remove</td>
+   </tr>
+   <tr>
+      <td>RedBlack</td>
+      <td>220,68%</td>
+      <td>127,68%</td>
+      <td>176,02%</td>
+   </tr>
+   <tr>
+      <td>Binary</td>
+      <td>190,06%</td>
+      <td>137,55%</td>
+      <td>187,39%</td>
+   </tr>
+   <tr>
+      <td>AVL</td>
+      <td>379,55%</td>
+      <td>129,43%</td>
+      <td>221,07%</td>
+   </tr>
+   <tr>
+      <td>Map</td>
+      <td>335,45%</td>
+      <td>143,23%</td>
+      <td>250,18%</td>
+   </tr>
+   <tr>
+      <td>Vector</td>
+      <td>121,16%</td>
+      <td>126,05%</td>
+      <td>351063,18%</td>
+   </tr>
+</table>
 
 # Compilação e Execução
 
