@@ -99,7 +99,7 @@ A partir de uma pequena quantidade de casos testes com 500000 dados foi possíve
 Vemos também que das três estruturas de árvores que possuíamos, a mais rápida foi a RedBlack, devemos atribuir isso ao seu alto nível de balanceamento, não requerindo tanto tempo na inserção quanto sua prima AVL e batendo o tempo de busca e remoção dela e da binária, devido justamente ao seu alto grau de balanceamento.    
 Vimos também que um vetor ordenado se tornou extremamente inceficiente quanto à remoção, por ter de ser percorrido inteiramente até achar o item necessário para remoção.    
 Observando os valores individuais de cada estrutura podemos dizer que retirando o unordered_map e o vector, as estruturas se assemelham em quesito tempo, claro que uma tem ganhos sobre a outra, mas analisando as estruturas binária, map e avl, seus tempos se aproximaram bastante para fazê-las até trocarem de posição dependendo do método.    
-Concluímos também que apesar de os métodos de remoção e inserção da RedBlack parecerem custoso à primeira vista, eles na verdade possuem o segundo melhor tempo das árvores em 2/3 métodos. A seguir, gráficos de desempenho:      
+Concluímos também que apesar de os métodos de remoção e inserção da RedBlack parecerem custoso à primeira vista, eles na verdade possuem o segundo melhor tempo das árvores em 2/3 métodos. A seguir, gráficos de desempenho em segundos:      
 <center>
 <img src="imgs/graficos.jpg"/>
 </center>
